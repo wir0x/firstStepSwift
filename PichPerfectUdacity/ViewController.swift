@@ -9,38 +9,34 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var recordingInProgress: UILabel!
+    
+    // MARK: properties
     @IBOutlet weak var stopButton: UIButton!
-    @IBOutlet weak var recordgButton: UIButton!
+    @IBOutlet weak var recordingLabel: UILabel!
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        print("didReceiveMemoryWarning")
     }
     
     override func viewWillAppear(animated: Bool) {
         stopButton.hidden = true
-        print("viewWillAppear")
+    }
+ 
+    @IBAction func recordAudio(sender: UIButton) {
+        recordingLabel.hidden = false
+        stopButton.hidden = false
     }
     
-    @IBAction func recordAudio(sender: UIButton) {
-        // TODO: Record the user's voice
-        recordingInProgress.hidden = false
-        stopButton.hidden = false
-        sender.hidden = true
+    @IBAction func stopAudio(sender: UIButton) {
+        recordingLabel.hidden = true
     }
-
-    @IBAction func stopRecording(sender: UIButton) {
-        recordingInProgress.hidden = true
-        recordButton.hidden = false
-        sender.hidden = true
-    }
+    
 }
 
