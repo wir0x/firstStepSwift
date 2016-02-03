@@ -62,23 +62,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		94ADDC011C5244FA0012C14A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				94ADDBFF1C5241320012C14A /* RecordedAudio.swift */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		94ADDC021C52450D0012C14A /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				94E6C1491C4AC6E500F729C0 /* RecordSoundsViewController.swift */,
-				942247541C4C31800050327F /* PlaySoundsViewController.swift */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
 		94E6C13B1C4AC6E500F729C0 = {
 			isa = PBXGroup;
 			children = (
@@ -100,9 +83,10 @@
 		94E6C1461C4AC6E500F729C0 /* PichPerfectUdacity */ = {
 			isa = PBXGroup;
 			children = (
-				94ADDC021C52450D0012C14A /* Controller */,
-				94ADDC011C5244FA0012C14A /* Model */,
 				94E6C1471C4AC6E500F729C0 /* AppDelegate.swift */,
+				942247541C4C31800050327F /* PlaySoundsViewController.swift */,
+				94E6C1491C4AC6E500F729C0 /* RecordSoundsViewController.swift */,
+				94ADDBFF1C5241320012C14A /* RecordedAudio.swift */,
 				94E6C14B1C4AC6E500F729C0 /* Main.storyboard */,
 				94E6C14E1C4AC6E500F729C0 /* Assets.xcassets */,
 				94E6C1501C4AC6E500F729C0 /* LaunchScreen.storyboard */,

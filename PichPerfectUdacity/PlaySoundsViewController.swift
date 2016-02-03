@@ -10,16 +10,19 @@ import UIKit
 import AVFoundation
 
 
+
 class PlaySoundsViewController: UIViewController {
     
     var audioPlayer: AVAudioPlayer!
     var receiveAudio: RecordedAudio!
-    
+    var audioEngine: AVAudioEngine!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Setup audio player.
         setupAudioPlayer()
+        audioEngine = AVAudioEngine()
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,13 +46,25 @@ class PlaySoundsViewController: UIViewController {
     
     @IBAction func stopAudio(sender: UIButton) {
         audioPlayer.stop()
+        audioPlayer.currentTime = 0.0
+    }
+    
+    @IBAction func playChipmunkAudio(sender: UIButton) {
+        let audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        let changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = 1000
+        audioEngine.attachNode(changePitchEffect)
+        
+        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+        
+        audioPlayerNode.play()
+        
     }
     
     func setupAudioPlayer() {
-        
-//        let PATH = NSBundle.mainBundle().pathForResource(receiveAudio.title, ofType: "wav")!
-//        let URL = NSURL(fileURLWithPath: PATH)
-        
         do {
             
             let sound = try AVAudioPlayer(contentsOfURL: receiveAudio.filePathUrl)

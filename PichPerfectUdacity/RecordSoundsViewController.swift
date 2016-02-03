@@ -43,31 +43,30 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         recordButton.enabled = false
     
         // directory when audio save audio recorder.
-        let DIR_PATH = NSSearchPathForDirectoriesInDomains(.DocumentationDirectory, .UserDomainMask, true)[0] as String
-        print("DIR_PATH: \(DIR_PATH)")
+        let DIR_PATH = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         
         // Configuring the way audio name.
 //        let currentDate = NSDate()
 //        let formatter = NSDateFormatter()
 //        formatter.dateFormat = "ddMMyyyy-HHmmss"
         let RECORDING_NAME = "my_audio.wav"
-        print("RECORDING_NAME: \(RECORDING_NAME)")
         
         // Path array, directory path and recording audio name.
         let PATH_ARRAY = [DIR_PATH, RECORDING_NAME]
         let FILE_PATH = NSURL.fileURLWithPathComponents(PATH_ARRAY)
-        print("PATH_ARRAY: \(PATH_ARRAY)")
-        print("FILE_PATH: \(FILE_PATH)")
-        
+
         // Setup audio session.
         let SESSION = AVAudioSession.sharedInstance()
-        try! SESSION.setCategory(AVAudioSessionCategoryRecord)
+        if SESSION.respondsToSelector("requestRecordPermission:") {
+            
+        }
+        try! SESSION.setCategory(AVAudioSessionCategoryPlayAndRecord)
         try! audioRecord = AVAudioRecorder(URL: FILE_PATH!, settings: [:])
         
         
         // Initialize and prepare the recorder.
-        audioRecord.meteringEnabled = true
         audioRecord.delegate = self
+        audioRecord.meteringEnabled = true
         audioRecord.prepareToRecord()
         audioRecord.record()
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="z8n-JD-10i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="z8n-JD-10i">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -94,13 +94,22 @@
                                     <action selector="stopAudio:" destination="YtC-u0-eHe" eventType="touchUpInside" id="ANJ-HG-ajx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yx8-dR-tXl">
+                                <rect key="frame" x="60" y="269" width="100" height="100"/>
+                                <state key="normal" image="chipmunk"/>
+                                <connections>
+                                    <action selector="playChipmunkAudio:" destination="YtC-u0-eHe" eventType="touchUpInside" id="586-1F-9nZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dfI-c6-rGR" firstAttribute="top" secondItem="MbM-ZE-ci0" secondAttribute="bottom" constant="50" id="4QD-dB-Ull"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dfI-c6-rGR" secondAttribute="trailing" constant="40" id="6Kc-Ii-nP9"/>
                             <constraint firstItem="NRs-PM-Tp2" firstAttribute="leading" secondItem="3ym-w7-0rO" secondAttribute="leadingMargin" constant="40" id="Xrp-ud-NgS"/>
+                            <constraint firstItem="Yx8-dR-tXl" firstAttribute="top" secondItem="NRs-PM-Tp2" secondAttribute="bottom" constant="55" id="YJ7-Qi-yI1"/>
                             <constraint firstItem="nYC-Mn-7wC" firstAttribute="centerX" secondItem="3ym-w7-0rO" secondAttribute="centerX" id="Ylg-Vx-GDM"/>
+                            <constraint firstItem="Yx8-dR-tXl" firstAttribute="leading" secondItem="3ym-w7-0rO" secondAttribute="leadingMargin" constant="40" id="fqQ-4h-TyE"/>
                             <constraint firstItem="NRs-PM-Tp2" firstAttribute="top" secondItem="MbM-ZE-ci0" secondAttribute="bottom" constant="50" id="hRa-0s-yi3"/>
                             <constraint firstItem="Nsg-JN-Cih" firstAttribute="top" secondItem="nYC-Mn-7wC" secondAttribute="bottom" constant="124" id="u6C-2H-d9t"/>
                         </constraints>
@@ -108,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Or-lS-rDA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1973" y="136"/>
+            <point key="canvasLocation" x="1888" y="136"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="faT-Xr-Tep">
@@ -130,6 +139,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chipmunk" width="100" height="100"/>
         <image name="microphone" width="100" height="100"/>
         <image name="slowSound" width="100" height="100"/>
         <image name="speedSound" width="100" height="100"/>
