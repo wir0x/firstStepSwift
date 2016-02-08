@@ -14,20 +14,16 @@ import AVFoundation
 class PlaySoundsViewController: UIViewController {
     
     var audioPlayer: AVAudioPlayer!
-    var receiveAudio: RecordedAudio!
     var audioEngine: AVAudioEngine!
+    var receiveAudio: RecordedAudio!
+    var audioFile: AVAudioFile!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Setup audio player.
-        setupAudioPlayer()
         audioEngine = AVAudioEngine()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        audioFile = try! AVAudioFile(forReading: receiveAudio.filePathUrl)
+        setupAudioPlayer()
+        //audioEngine = AVAudioEngine()
     }
     
     @IBAction func playSlowAudio(sender: UIButton) {
@@ -50,34 +46,49 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func playChipmunkAudio(sender: UIButton) {
-        let audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        playAudioWithVariablePitch(1000)
         
-        let changePitchEffect = AVAudioUnitTimePitch()
-        changePitchEffect.pitch = 1000
-        audioEngine.attachNode(changePitchEffect)
-        
-        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
-        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
-        
-        audioPlayerNode.play()
-        
+    }
+    
+    @IBAction func playDarthvaderAudio(sender:UIButton) {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        playAudioWithVariablePitch(-1000)
     }
     
     func setupAudioPlayer() {
         do {
-            
             let sound = try AVAudioPlayer(contentsOfURL: receiveAudio.filePathUrl)
             audioPlayer = sound
             audioPlayer.enableRate = true
             
         } catch {
-            
             print("sound not available")
             
         }
     }
     
+    func playAudioWithVariablePitch(pitch: Float) {
+        let audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        let changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = pitch
+        
+        audioEngine.attachNode(changePitchEffect)
+        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+        
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        try! audioEngine.start()
+        audioPlayerNode.play()
+        
+    }
+         
     /*
     // MARK: - Navigation
     
